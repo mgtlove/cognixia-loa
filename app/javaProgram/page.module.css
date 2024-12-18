@@ -1,0 +1,72 @@
+/* UnityEssentials.module.css */
+
+.pageContainer {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .heroSection {
+    background: linear-gradient(135deg, #007bff, #6610f2);
+    color: white;
+    padding: 5rem 1rem;
+  }
+  
+  .heroSection h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .heroSection p {
+    font-size: 1.25rem;
+  }
+  
+  .heroSection button {
+    background-color: #ff5733;
+    border-color: #ff5733;
+  }
+  
+  .heroSection button:hover {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+  }
+  
+  .card {
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .card .btn {
+    color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .card .btn:hover {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .footer {
+    background-color: #f1f1f1;
+    border-top: 1px solid #ddd;
+  }
+  
+ .footer p {
+    font-size: 0.875rem;
+    color: #666;
+  }
+  
