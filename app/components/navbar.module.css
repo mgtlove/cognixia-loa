@@ -156,6 +156,29 @@ a.secondary {
     text-align: center;
   }
 
+  /* Navigation */
+.nav {
+  background-color: #1e1e1e; /* Dark navbar background */
+  border-radius: 100px; /* Adjust the value as needed */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-black);
+  color: var(--white);
+  padding: 10px 20px;
+}
+
+.nav a {
+  color: var(--white);
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 1em;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
   .ctas {
     flex-direction: column;
   }

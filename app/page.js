@@ -6,7 +6,7 @@ import Navbar from './components/navbar';
 
 export default function Home() {
   return (
-    <body data-bs-theme="dark">
+    <body>
 
       {/* Main Content */}
       <main className="container-fluid bg-dark">

@@ -71,27 +71,6 @@ body {
   justify-content: flex-end;
 }
 
-/* Navigation */
-.navbar {
-  background-color: #1e1e1e; /* Dark navbar background */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--primary-black);
-  color: var(--white);
-  padding: 10px 20px;
-}
-
-.navbar a {
-  color: var(--white);
-  text-decoration: none;
-  margin: 0 10px;
-  font-size: 1em;
-}
-
-.navbar a:hover {
-  text-decoration: underline;
-}
 
 /* Responsive Typography */
 h1 {

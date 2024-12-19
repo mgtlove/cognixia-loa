@@ -1,26 +1,19 @@
 
-'use client';
-
 import { GSP_NO_RETURNED_VALUE } from "next/dist/lib/constants";
 import Link from 'next/link';
 import Image from "next/image";
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./navbar.module.css"; // Import custom CSS
-import { usePathname } from "next/navigation";
 
 export default function Navbar() {
 
-    const pathname = usePathname();
 
     return(
-        <>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-                <div className="container-fluid" data-bs-theme="dark">
-                    <div className={pathname === '/' ? 'active' : ''} >
+            <nav data-bs-theme="dark" className= {`navbar navbar-expand-lg bg-body-tertiary  ${styles.nav}`}>
+                <div className="container-fluid" >
                 <Link className="navbar-brand" href="/">
                     <Image className={styles.logoImage} src="/images/cognixialogo.png" alt="Cognixia Logo" width="200" height="100" />
                 </Link>
-                </div>
             <button
                 className="navbar-toggler"
                 type="button"
@@ -69,7 +62,6 @@ export default function Navbar() {
             </div>
             </div>
          </nav>
-        </>
 
     );
 
