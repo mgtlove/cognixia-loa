@@ -1,3 +1,5 @@
+"use client";
+
 import { Amplify, Auth } from 'aws-amplify';
 import React, { createContext, useState, useEffect, useContext } from 'react';
 
