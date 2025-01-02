@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { AtSymbolIcon, KeyIcon, ExclamationCircleIcon } from "@heroicons/react/24/outline";
-import { ArrowRightIcon } from "@heroicons/react/20/solid";
-import { Button } from "@/app/components/button";
+import { ArrowRightIcon } from "@heroicons/react/24/solid";
+// import { Button } from "@/app/components/button";
 import { handleSignIn } from "@/lib/cognitoActions";
 import Link from "next/link";
 import "bootstrap/dist/css/bootstrap.min.css";
