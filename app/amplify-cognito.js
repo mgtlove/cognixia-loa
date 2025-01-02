@@ -6,9 +6,9 @@ import React , {createContext, useState, useEffect, useContext} from 'react';
 
 Amplify.configure({
   Auth: {
-    region: 'us-east-2', // Replace with your Cognito region
-    userPoolId: 'us-east-2_yTNB5kwHh',
-    userPoolWebClientId: 'm5cds08c8ls0g4j8u76f9r5r4',
+    region: process.env.NEXT_PUBLIC_REGION_ID, // Replace with your Cognito region
+    userPoolId: process.env.NEXT_PUBLIC_USER_POOL_ID, // Replace with your User Pool ID
+    userPoolWebClientId: process.env. NEXT_PUBLIC_USER_POOL_CLIENT_ID, // Replace with your Web Client ID
   },
   
 },
