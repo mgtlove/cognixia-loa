@@ -2,6 +2,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/navbar";
+import { AuthProvider } from "./amplify-cognito";
+import '../amplify-cognito';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,6 +26,7 @@ export default function RootLayout({ children }) {
     <>
     <html lang="en">
       <body  >
+        <AuthProvider/>
         <Navbar />
         {children}
       </body>
