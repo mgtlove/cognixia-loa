@@ -2,8 +2,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/navbar";
-import { AuthProvider } from "./amplify-cognito";
-import "@/app/amplify-cognito";
+import { AuthProvider } from "./amplify-cognito-config";
+import "@/app/amplify-cognito-config";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
