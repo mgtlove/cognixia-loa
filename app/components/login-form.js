@@ -6,7 +6,7 @@ import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { Button } from "@/app/components/button";
 import { handleSignIn } from "@/lib/cognitoActions";
 import Link from "next/link";
-import { Form, Container, Row, Col, Alert } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function LoginForm() {
   const [errorMessage, setErrorMessage] = useState(null);
