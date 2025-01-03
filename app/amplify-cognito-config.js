@@ -1,6 +1,7 @@
 "use client";
 
 import { Amplify, Auth } from 'aws-amplify';
+import outputs from '@/amplify_outputs.json';
 import React, { createContext, useState, useEffect, useContext } from 'react';
 
 Amplify.configure({
@@ -60,3 +61,7 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
+
+export default function RootLayoutThatConfiguresAmplifyOnTheClient({ children }) {
+  return children;
+}
