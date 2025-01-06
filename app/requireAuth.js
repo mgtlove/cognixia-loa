@@ -10,10 +10,10 @@ export default function RequireAuth({ children }) {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (!loading && !user && pathname !== '/login') {
+    if (!loading && !user && pathname !== '/auth') {
       // Store the attempted URL
       sessionStorage.setItem('redirectUrl', pathname);
-      router.push('/login');
+      router.push('/auth');
     }
   }, [user, loading, router, pathname]);
 
