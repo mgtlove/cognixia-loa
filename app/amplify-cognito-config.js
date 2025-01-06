@@ -1,16 +1,21 @@
 "use client";
 
-import { Amplify, Auth } from 'aws-amplify';
+import { Amplify, Hub } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
+import { withSSRContext } from 'aws-amplify';
 // import outputs from '@/amplify_outputs.json';
 import React, { createContext, useState, useEffect, useContext } from 'react';
 
-Amplify.configure({
-  Auth: {
-    region: process.env.NEXT_PUBLIC_REGION_ID, // Replace with your Cognito region
+const config = {
+  region: process.env.NEXT_PUBLIC_REGION_ID, // Replace with your Cognito region
     userPoolId: process.env.NEXT_PUBLIC_USER_POOL_ID, // Replace with your User Pool ID
     userPoolWebClientId: process.env.NEXT_PUBLIC_USER_POOL_CLIENT_ID, // Replace with your Web Client ID
-  },
-}, { ssr: true });
+};
+
+Amplify.configure(
+  {...config},
+  { ssr: true });
+
 
 // Create a context to store the current user
 const AuthContext = createContext();
