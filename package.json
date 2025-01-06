@@ -20,6 +20,7 @@
     "next": "^15.0.4",
     "oidc-client-ts": "^3.1.0",
     "react": "^19.0.0",
+    "react-bootstrap": "^2.10.7",
     "react-dom": "^19.0.0-rc-66855b96-20241106"
   },
   "devDependencies": {
