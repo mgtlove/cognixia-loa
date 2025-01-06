@@ -24,7 +24,15 @@
     "react-dom": "^19.0.0-rc-66855b96-20241106"
   },
   "devDependencies": {
+    "@aws-amplify/backend": "^1.12.0",
+    "@aws-amplify/backend-cli": "^1.4.6",
+    "aws-cdk": "^2.174.0",
+    "aws-cdk-lib": "^2.174.0",
+    "constructs": "^10.4.2",
+    "esbuild": "^0.24.2",
     "eslint": "^8",
-    "eslint-config-next": "15.0.3"
+    "eslint-config-next": "15.0.3",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
   }
 }

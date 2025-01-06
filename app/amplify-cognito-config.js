@@ -19,41 +19,60 @@ const config = {
 Amplify.configure(config, { ssr: true });
 
 
-
-// Create a context to store the current user
-const AuthContext = createContext();
-
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Improved listener function with more comprehensive event handling
+    const listener = ({ payload: { event, data } }) => {
+      switch (event) {
+        case 'signIn':
+          console.log('User signed in');
+          getCurrentUser().then(setUser);
+          break;
+        case 'signUp':
+          console.log('User signed up');
+          break;
+        case 'signOut':
+          console.log('User signed out');
+          setUser(null);
+          break;
+        case 'signIn_failure':
+          console.log('User sign in failed');
+          setUser(null);
+          break;
+        case 'tokenRefresh':
+          console.log('Token refresh succeeded');
+          break;
+        case 'tokenRefresh_failure':
+          console.log('Token refresh failed');
+          break;
+        case 'autoSignIn':
+          console.log('Auto Sign In succeeded');
+          setUser(data);
+          break;
+        case 'autoSignIn_failure':
+          console.log('Auto Sign In failed');
+          break;
+      }
+    };
+    
+
+    // Initial user check
     const checkUser = async () => {
       try {
         const currentUser = await getCurrentUser();
         setUser(currentUser);
       } catch (error) {
+        console.log('No current user', error);
         setUser(null);
       } finally {
         setLoading(false);
       }
     };
-    
 
-    checkUser();
-
-    const listener = (data) => {
-      switch (data.payload.event) {
-        case 'signIn':
-          checkUser();
-          break;
-        case 'signOut':
-          setUser(null);
-          break;
-        default:
-          break;
-      }
-    };
+    // Removed redeclaration of listener
 
     Hub.listen('auth', listener);
 
@@ -61,6 +80,9 @@ export const AuthProvider = ({ children }) => {
       Hub.remove('auth', listener);
     };
   }, []);
+
+// Create a context to store the current user
+const AuthContext = createContext();
 
   return (
     <AuthContext.Provider value={{ user, loading }}>
