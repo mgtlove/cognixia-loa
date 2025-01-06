@@ -1,6 +1,7 @@
 "use client";
 
-import { Amplify, Hub } from 'aws-amplify';
+import { Amplify } from 'aws-amplify';
+import { Hub } from '@aws-amplify/core';
 import { signIn, signOut, getCurrentUser } from 'aws-amplify/auth';
 import { withSSRContext } from 'aws-amplify';
 // import outputs from '@/amplify_outputs.json';
@@ -16,14 +17,31 @@ const config = {
   }
 };
 
-Amplify.configure(config, { ssr: true });
+if (typeof window !== 'undefined') {
+  Amplify.configure(config);
+}
 
+const AuthContext = createContext(undefined);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const checkUser = async () => {
+      try {
+        const currentUser = await getCurrentUser();
+        setUser(currentUser);
+      } catch (error) {
+        console.log('No current user', error);
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     // Improved listener function with more comprehensive event handling
     const listener = ({ payload: { event, data } }) => {
       switch (event) {
@@ -60,39 +78,41 @@ export const AuthProvider = ({ children }) => {
     
 
     // Initial user check
-    const checkUser = async () => {
-      try {
-        const currentUser = await getCurrentUser();
-        setUser(currentUser);
-      } catch (error) {
-        console.log('No current user', error);
-        setUser(null);
-      } finally {
-        setLoading(false);
-      }
-    };
+    checkUser();
 
     // Removed redeclaration of listener
 
-    Hub.listen('auth', listener);
+    // Set up Hub listener
+    const unsubscribe = Hub.listen('auth', listener);
 
+    // Cleanup
     return () => {
-      Hub.remove('auth', listener);
+      if (unsubscribe) {
+        unsubscribe();
+      }
     };
   }, []);
 
-// Create a context to store the current user
-const AuthContext = createContext();
+  const value = {
+    user,
+    loading,
+  };
 
   return (
-    <AuthContext.Provider value={{ user, loading }}>
+    <AuthContext.Provider value={{ value }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
-
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};
+// Wrap your app with this component
 export default function RootLayoutThatConfiguresAmplifyOnTheClient({ children }) {
-  return children;
+  return <AuthProvider>{children}</AuthProvider>;
 }
