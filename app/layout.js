@@ -5,6 +5,7 @@ import Navbar from "./components/navbar";
 import { AuthProvider } from "./amplify-cognito-config";
 import "@/app/amplify-cognito-config";
 import RootLayoutThatConfiguresAmplifyOnTheClient from "./amplify-cognito-config";
+import RequireAuth from "./requireAuth";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,8 +29,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body  >
         <RootLayoutThatConfiguresAmplifyOnTheClient>
-        <Navbar />
-        {children}
+          <RequireAuth>
+            <Navbar />
+            {children}
+          </RequireAuth>
         </RootLayoutThatConfiguresAmplifyOnTheClient>
       </body>
     </html>
