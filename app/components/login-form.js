@@ -32,8 +32,8 @@ export default function LoginForm() {
 
   return (
     <div className="mt-5 container">
-      <Row className="justify-content-md-center">
-        <Col md={6}>
+      <div className="justify-content-md-center">
+        <div className="col-md-6">
           <h1 className="mb-3 text-center">Please log in to continue.</h1>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="email" className="mb-3">
@@ -88,8 +88,8 @@ export default function LoginForm() {
               Don't have an account? Sign up.
             </Link>
           </div>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </div>
   );
 }
