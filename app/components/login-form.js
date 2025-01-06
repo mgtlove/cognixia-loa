@@ -31,7 +31,7 @@ export default function LoginForm() {
   };
 
   return (
-    <Container className="mt-5">
+    <div className="mt-5 container">
       <Row className="justify-content-md-center">
         <Col md={6}>
           <h1 className="mb-3 text-center">Please log in to continue.</h1>
@@ -90,6 +90,6 @@ export default function LoginForm() {
           </div>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 }
