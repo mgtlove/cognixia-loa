@@ -1,20 +1,23 @@
 "use client";
 
 import { Amplify, Hub } from 'aws-amplify';
-import { Auth } from 'aws-amplify';
+import { signIn, signOut, getCurrentUser } from 'aws-amplify/auth';
 import { withSSRContext } from 'aws-amplify';
 // import outputs from '@/amplify_outputs.json';
 import React, { createContext, useState, useEffect, useContext } from 'react';
 
 const config = {
-  region: process.env.NEXT_PUBLIC_REGION_ID, // Replace with your Cognito region
-    userPoolId: process.env.NEXT_PUBLIC_USER_POOL_ID, // Replace with your User Pool ID
-    userPoolWebClientId: process.env.NEXT_PUBLIC_USER_POOL_CLIENT_ID, // Replace with your Web Client ID
+  Auth: {
+    Cognito: {
+      region: process.env.NEXT_PUBLIC_REGION_ID,
+      userPoolId: process.env.NEXT_PUBLIC_USER_POOL_ID,
+      userPoolClientId: process.env.NEXT_PUBLIC_USER_POOL_CLIENT_ID
+    }
+  }
 };
 
-Amplify.configure(
-  {...config},
-  { ssr: true });
+Amplify.configure(config, { ssr: true });
+
 
 
 // Create a context to store the current user
@@ -27,7 +30,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkUser = async () => {
       try {
-        const currentUser = await Auth.currentAuthenticatedUser();
+        const currentUser = await getCurrentUser();
         setUser(currentUser);
       } catch (error) {
         setUser(null);
@@ -35,6 +38,7 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
       }
     };
+    
 
     checkUser();
 
@@ -51,10 +55,10 @@ export const AuthProvider = ({ children }) => {
       }
     };
 
-    Auth.Hub.listen('auth', listener);
+    Hub.listen('auth', listener);
 
     return () => {
-      Auth.Hub.remove('auth', listener);
+      Hub.remove('auth', listener);
     };
   }, []);
 
