@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./page.module.css"; // Import custom CSS
 import Link from 'next/link';
 
+
 export default function javaProgram() {
   return (
     <div className={styles.pageContainer}>
