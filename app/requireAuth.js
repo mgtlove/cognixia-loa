@@ -28,7 +28,7 @@ export default function RequireAuth({ children }) {
   }
 
   // If user is not authenticated and page is not login page, don't render children
-  if (!user && pathname !== '/login') {
+  if (!user && pathname !== '/auth') {
     return null;
   }
 
