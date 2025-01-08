@@ -34,11 +34,11 @@ export default function RootLayout({ children }) {
     <>
     <html lang="en">
       <body  >
-            <AuthProvider {...oidcConfig}>
+         <Authenticator>   
               <Navbar />
               {children}
-            </AuthProvider>
-      </body>
+          </Authenticator>
+      </body> 
     </html>
     </>
   );
