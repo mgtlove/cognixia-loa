@@ -5,11 +5,11 @@ import Image from "next/image";
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./navbar.module.css"; // Import custom CSS
 
-export default function Navbar() {
+export default function Navbar({ signOut, user }) {
 
 
     return(
-            <nav data-bs-theme="dark" className= {`navbar navbar-expand-lg bg-body-tertiary  ${styles.nav}`}>
+            <nav data-bs-theme="dark" className= {`navbar navbar-expand-lg bg-body-tertiary  ${styles.nav}`}>{
                 <div className="container-fluid" >
                 <Link className="navbar-brand" href="/">
                     <Image className={styles.logoImage} src="/images/cognixialogo.png" alt="Cognixia Logo" width="200" height="100" />
@@ -61,7 +61,14 @@ export default function Navbar() {
                 </form>
             </div>
             </div>
-         </nav>
+        }       
+        {user && (
+        <div>
+          <span>Welcome, {user.username}</span>
+          <button onClick={signOut}>Sign out</button>
+        </div>
+      )}
+        </nav>
 
     );
 
