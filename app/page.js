@@ -2,9 +2,11 @@ import Image from "next/image";
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./page.module.css"; // Import custom CSS
 import Link from 'next/link';
-import Navbar from './components/navbar';
+import {useAuthenticator} from "@aws-amplify/ui-react";
 
 export default function Home() {
+  const { user } = useAuthenticator();
+  <h1>Hello {user?.username}</h1>
   return (
     <body>
 
