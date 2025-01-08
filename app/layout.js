@@ -7,6 +7,7 @@ import Navbar from "./components/navbar";
 import { AuthProvider } from "react-oidc-context";
 import { useRouter } from "next/navigation";
 import { metadata } from "@/metadata";
+import { Authenticator } from "@aws-amplify/ui-react";
 
 
 const geistSans = localFont({
