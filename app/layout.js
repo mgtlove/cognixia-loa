@@ -7,6 +7,7 @@ import '@aws-amplify/ui-react/styles.css';
 import Navbar from "./components/navbar";
 import { Authenticator } from "@aws-amplify/ui-react";
 import "../amplify-config";
+import { Amplify } from "aws-amplify";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
